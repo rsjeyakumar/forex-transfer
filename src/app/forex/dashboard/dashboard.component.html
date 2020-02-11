@@ -14,11 +14,8 @@ margin-bottom: 5%;">
                                     <label for="email" class="links">From Account<span
                                             class="required">*</span></label>
                                             <select class="form-control" formControlName="fromAccount">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option *ngFor="let item of allItemList" [value]="item.accountNumber">{{item.accountNumber}}- {{item.currency}}</option>
+                                               
                                               </select>
                                     <div *ngIf="transfer.fromAccount.touched && transfer.fromAccount.invalid" class="error">
                                         <div *ngIf="transfer.fromAccount.errors && transfer.fromAccount.errors.required ">

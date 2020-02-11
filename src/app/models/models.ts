@@ -13,7 +13,7 @@ export interface LoginRes {
 export interface AccountReq {
         statusCode: number;
         message: string;
-        accountDetails: AccountsList[];
+        acccountDetail: AccountsList[];
 }
 
 export interface AccountsList {

@@ -7,60 +7,73 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoodCartService {
-  apiURL = 'http://10.117.189.198:8085';
+  apiURL = 'http://10.117.189.227:8585';
   showAlert;
   loginAPI = `${this.apiURL}/forex/login`;
-  transferAPI =  `${this.apiURL}/forex/users`;
+  transferAPI = `${this.apiURL}/forex/users`;
 
 
-constructor(private http: HttpClient) {
-}
+  constructor(private http: HttpClient) {
+  }
 
-/* Http Headers */
-httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json'
-  })
-};
+  /* Http Headers */
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    })
+  };
 
-/*
-* @param data
-* Validate Login API
-* POST Method
-* Type Object
-*/
-checkLogin(data): Observable < any > {
-  return this.http.post(this.loginAPI, data, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
+  /*
+  * @param data
+  * Validate Login API
+  * POST Method
+  * Type Object
+  */
+  checkLogin(data): Observable<any> {
+    return this.http.post(this.loginAPI, data, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
 
-/*
-* @param data
-* Validate Login API
-* POST Method
-* Type Object
-*/
-transferAmount(data): Observable < any > {
-  return this.http.post(this.transferAPI, data, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
+  /*
+  * @param data
+  * Validate Login API
+  * POST Method
+  * Type Object
+  */
+  transferAmount(data, userId): Observable<any> {
+    return this.http.post(this.transferAPI + '/' + userId + '/transactions', data, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
 
 
-/*
-* @param data
-* Validate Login API
-* POST Method
-* Type Object
-*/
-getSummary(data): Observable < any > {
-  return this.http.get(this.transferAPI, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
+  /*
+  * @param data
+  * Validate Login API
+  * POST Method
+  * Type Object
+  */
+  getSummary(data): Observable<any> {
+    return this.http.get(this.transferAPI, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
 
+
+
+  /*
+  * @param data
+  * Validate Login API
+  * POST Method
+  * Type Object
+  */
+  getAllAccounts(custId): Observable<any> {
+    return this.http.get(this.transferAPI + '/' + custId + '/accounts', this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
 
 
   /*
@@ -68,42 +81,42 @@ getSummary(data): Observable < any > {
      * Error Handling
      */
   private errorHandler(error) {
-  let errorMessage = '';
-  this.showAlert = {};
-  if (error.error instanceof ErrorEvent) {
-    /* Get client-side error */
-    errorMessage = error.error.message;
-  } else {
-    /* Get server-side error */
-    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    let errorMessage = '';
+    this.showAlert = {};
+    if (error.error instanceof ErrorEvent) {
+      /* Get client-side error */
+      errorMessage = error.error.message;
+    } else {
+      /* Get server-side error */
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    // console.log(error.error.message);
+    this.showAlert = this.modalConfig(error.error.message ? error.error.message : 'Network Error', true);
+    return throwError(errorMessage);
   }
-  // console.log(error.error.message);
-  this.showAlert = this.modalConfig(error.error.message ? error.error.message : 'Network Error', true);
-  return throwError(errorMessage);
-}
   /*
    * @param No Param
    * Check user is valid or not
    * Type boolean
    */
   public validUser() {
-  const user = JSON.parse(sessionStorage.getItem('currentUser'));
-  if (user) {
-    return true;
-  } else {
-    return false;
+    const user = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
   }
-}
 
   /*
    * @param message, modal
    * Set Modal Properties
    */
   public modalConfig(mesg, modal) {
-  return {
-    // header: head,
-    message: mesg,
-    modalShow: modal
-  };
-}
+    return {
+      // header: head,
+      message: mesg,
+      modalShow: modal
+    };
+  }
 }
