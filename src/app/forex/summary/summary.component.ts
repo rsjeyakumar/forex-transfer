@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FoodCartService } from '../../services/food-cart.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -7,6 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryComponent implements OnInit {
 
+  constructor(
+    private elementRef: ElementRef,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public foodService: FoodCartService
+  ) { }
   // summaryRespose: Tranaction;
   // accountNumber: number;
   // userName: string;
@@ -17,6 +26,7 @@ export class SummaryComponent implements OnInit {
 
 
   ngOnInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
     // this.getApitransactionSummary();
     // this.accountNumber = JSON.parse(sessionStorage.getItem('user')).accountNumber;
     // this.userName = JSON.parse(sessionStorage.getItem('user')).userName;
