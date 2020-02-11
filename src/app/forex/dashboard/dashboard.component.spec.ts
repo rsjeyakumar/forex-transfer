@@ -58,6 +58,8 @@ describe('DashboardComponent', () => {
       ]
     })
       .compileComponents();
+    api = TestBed.get(FoodCartService);
+    mockRouter = TestBed.get(Router);
   }));
 
   beforeEach(() => {
@@ -86,6 +88,8 @@ describe('DashboardComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
   });
   it('should transfer the amount', () => {
+    const userData = JSON.parse(sessionStorage.getItem('currentUser'));
+    const userId = userData ? userData.customerId : 0;
     const postObj = {
       fromAccount: this.transferForm.value.fromAccount,
       toAccount: this.transferForm.value.toAccount,
@@ -96,8 +100,17 @@ describe('DashboardComponent', () => {
       toAccount: ['', Validators.required],
       ammount: ['', Validators.required]
     });
+    component.transferAmount();
     expect(component.transferForm.valid).toBeFalsy();
-    expect(api.transferAmount(postObj)).toBeTruthy();
+    expect(api.transferAmount(postObj, userId)).toBeTruthy();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/summary']);
+  });
+  it('should display all accounts', () => {
+    const userData = JSON.parse(sessionStorage.getItem('currentUser'));
+    const userId = userData ? userData.customerId : 0;
+    component.loader = true;
+    component.getAccount();
+    expect(api.getAllAccounts(userId)).toBeTruthy();
+    expect(component.loader).toBeFalsy();
   });
 });

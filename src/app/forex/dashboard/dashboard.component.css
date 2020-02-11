@@ -56,3 +56,6 @@
           padding: 2px;
           font-size: 100%;
       }
+      .btn-primary.disabled, .btn-primary:disabled{
+        cursor:default !important;
+      }

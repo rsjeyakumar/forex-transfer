@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
   transferForm: FormGroup;
   loader = false;
   allItemList;
+  selectedIndex;
+  showBalance = false;
   constructor(
     private elementRef: ElementRef,
     private formBuilder: FormBuilder,
@@ -34,6 +36,33 @@ export class DashboardComponent implements OnInit {
     const charCode = (event.which) ? event.which : event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
   }
+
+  selectedVal(e) {
+    this.showBalance = true;
+    this.selectedIndex = e.target['selectedIndex'];
+  }
+
+  checkCurrency() {
+    const postObj = {
+      fromAccount: +this.transferForm.value.fromAccount,
+      toAccount: +this.transferForm.value.toAccount
+    };
+
+    // tslint:disable-next-line: deprecation
+    this.foodService.transferAmount(postObj, userId).subscribe(res => {
+      console.log(res);
+      Swal.fire(
+        'Good job!',
+        'Transfer Initiated Successfully',
+        'success'
+      );
+      this.router.navigate(['/summary']);
+      this.loader = false;
+    }, error => {
+      this.loader = false;
+    });
+
+  }
   /*
   * @param Login Validate
   * Validate login form with credentials
@@ -44,9 +73,9 @@ export class DashboardComponent implements OnInit {
     const userId = userData ? userData.customerId : 0;
     if (this.transferForm.valid) {
       const postObj = {
-        fromAccount: +this.transferForm.value.fromAccount,
-        toAccount: +this.transferForm.value.toAccount,
-        transferAmount: +this.transferForm.value.ammount,
+        fromAcc: +this.transferForm.value.fromAccount,
+        toAcc: +this.transferForm.value.toAccount,
+        Amount: +this.transferForm.value.ammount,
       };
       // tslint:disable-next-line: deprecation
       this.foodService.transferAmount(postObj, userId).subscribe(res => {

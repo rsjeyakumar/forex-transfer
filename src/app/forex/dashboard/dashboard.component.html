@@ -13,30 +13,50 @@ margin-bottom: 5%;">
                                 <div class="form-group text-left">
                                     <label for="email" class="links">From Account<span
                                             class="required">*</span></label>
-                                            <select class="form-control" formControlName="fromAccount">
-                                                <option *ngFor="let item of allItemList" [value]="item.accountNumber">{{item.accountNumber}}- {{item.currency}}</option>
+                                            <select class="form-control" formControlName="fromAccount" (change)="selectedVal($event)" >
+                                                <option *ngFor="let item of allItemList; let i=index"  [value]="item.accountNumber">{{item.accountNumber}}- {{item.currency}}</option>
                                                
                                               </select>
                                     <div *ngIf="transfer.fromAccount.touched && transfer.fromAccount.invalid" class="error">
                                         <div *ngIf="transfer.fromAccount.errors && transfer.fromAccount.errors.required ">
-                                            To currency is <strong>required</strong>
+                                            From Account is <strong>required</strong>
                                         </div>
                                     </div>
                                 </div>
-                               
-                                <div class="form-group text-left">
+                                <div class="form-group text-left" *ngIf="showBalance">
+                                    <label for="email" class="links">Balance</label>
+                                    <input type="text" [value]="allItemList[selectedIndex]?.balance"  class="form-control"
+                                    required disabled>      
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 text-left">
+                                            <label for="account" class="links">To Account<span
+                                                class="required">*</span></label>
+                                        <input type="text" formControlName="toAccount" (keypress)="isNumberKey($event)" class="form-control"
+                                            placeholder="Enter To Account" required>
+                                        <div *ngIf="transfer.toAccount.touched && transfer.toAccount.invalid" class="error">
+                                            <div *ngIf="transfer.toAccount.errors && transfer.toAccount.errors.required ">
+                                            To Account is <strong>required</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 text-left">
+                                        <button type="button" class="btn btn-primary" style="margin-top: 30px;" (click)="checkCurrency();">Check Currency</button>
+                                    </div>
+                                </div>  
+                                <!-- <div class="form-group text-left">
                                     <label for="account" class="links">To Account<span
                                             class="required">*</span></label>
-                                    <input type="text" formControlName="toAccount" class="form-control"
+                                    <input type="text" formControlName="toAccount" (keypress)="isNumberKey($event)" class="form-control"
                                         placeholder="Enter To Account" required>
                                     <div *ngIf="transfer.toAccount.touched && transfer.toAccount.invalid" class="error">
                                         <div *ngIf="transfer.toAccount.errors && transfer.toAccount.errors.required ">
                                            To Account is <strong>required</strong>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group text-left">
-                                    <label for="account" class="links">Ammount<span
+                                    <label for="account" class="links">Amount<span
                                             class="required">*</span></label>
                                     <input type="text" formControlName="ammount" class="form-control"
                                         placeholder="Enter Amount" (keypress)="isNumberKey($event)" required>
@@ -46,8 +66,9 @@ margin-bottom: 5%;">
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" [disabled]="transferForm.invalid"
-                                    class="btn login_btn">Transfer</button>
+                                <button type="submit" [disabled]="transferForm.invalid" class="btn btn-primary">Transfer</button>
+                                <!-- <button type="submit" [disabled]="transferForm.invalid"
+                                    class="btn login_btn">Transfer</button> -->
                             </form>
                         </div>
                     </div>
@@ -56,4 +77,7 @@ margin-bottom: 5%;">
         </div>
     </div>
 </section>
+
+<app-loader [loader]="loader"></app-loader>
+<app-alert [sharedAlert]="foodService.showAlert" *ngIf="foodService.showAlert?.modalShow"></app-alert>
 
