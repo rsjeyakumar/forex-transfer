@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FoodCartService } from '../../services/food-cart.service';
 import Swal from 'sweetalert2';
+import { TransactionSummary, TransactionHistory } from 'src/app/models/models';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',

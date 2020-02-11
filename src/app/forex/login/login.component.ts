@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FoodCartService } from '../../services/food-cart.service';
+import { LoginReq, LoginRes } from 'src/app/models/models';
 import Swal from 'sweetalert2';
 
 @Component({
