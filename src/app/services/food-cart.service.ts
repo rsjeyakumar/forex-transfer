@@ -37,68 +37,6 @@ checkLogin(data): Observable < any > {
   );
 }
 
-/*
-* @param data
-* Get All Items
-* POST Method
-* Type Object
-*/
-getAllItems(): Observable < any > {
-  return this.http.get(this.viewAllItemsAPI, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
-
-
-/*
-  * @param data
-  * Get All Items
-  * POST Method
-  * Type Object
-  */
-viewOrderHistory(customerid): Observable < any > {
-  return this.http.get(`${this.customersAPI}/${customerid}`, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
-
-
-/*
-  * @param data
-  * Get All Items
-  * POST Method
-  * Type Object
-  */
-addPreference(data, customerid): Observable < any > {
-  return this.http.post(`${this.customersAPI}/${customerid}/preferences`, data, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
-
-
-/*
-  * @param data
-  * Get All Items
-  * POST Method
-  * Type Object
-  */
-viewPreference(customerid): Observable < any > {
-  return this.http.get(`${this.customersAPI}/${customerid}/preferences`, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
-
-/*
-  * @param data
-  * Get All Items
-  * POST Method
-  * Type Object
-  */
-placeOrder(data, customerid): Observable < any > {
-  return this.http.post(`${this.customersAPI}/${customerid}/orders`, data, this.httpOptions).pipe(
-    catchError(this.errorHandler.bind(this))
-  );
-}
 
   /*
      * @param error

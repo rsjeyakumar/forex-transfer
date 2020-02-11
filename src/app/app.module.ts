@@ -7,16 +7,21 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MessageSubscriptionService } from '../app/services/message-subscription.service';
-
+import { LoginComponent } from './forex/login/login.component';
+import { DashboardComponent } from './forex/dashboard/dashboard.component';
+import { SummaryComponent } from './forex/summary/summary.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [MessageSubscriptionService],
   bootstrap: [AppComponent]
