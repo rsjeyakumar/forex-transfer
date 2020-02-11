@@ -1,1 +1,160 @@
-<p>summary works!</p>
+<!-- account summary template -->
+<div class="container shadow accountsummary">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 my-4">
+                    <h2>Transaction Account Summary</h2>
+                </div>
+                <!-- <div class="col-6">
+                    <p><b>User Name:</b><span> {{userName}}</span></p>
+                </div>
+                <div class="col-6 text-right">
+                    <p><b>Account Type:</b><span> {{accountType}}</span></p>
+                </div>
+                <div class="col-6 ">
+                    <p><b>Account Number:</b><span> {{accountNumber}}</span></p>
+                </div>
+                <div class="col-6 text-right">
+                    <p><b>Available Balance:</b><span> {{accountBalance?.accountBalance}}.00</span></p>
+                </div> -->
+            </div>
+        </div>
+        <div class="col-12">
+            <div>
+
+                <div class="text-center">
+                    {{summaryRespose?.message }}
+                </div>
+            </div>
+            <!-- *ngFor="let transaction of summaryRespose?.transactionDetails" -->
+            <div class="card" >
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><small><b>Account Number:</b></small> Jeyakumar  <!-- {{transaction?.payeeName}}--></p>
+
+                        </div>
+                        <div class="col-md-4">
+                            <p><small><b>Currency Type:</b></small>USD  <!-- {{transaction?.transactionType}} --></p>
+
+                        </div>
+                        <div class="col-md-4 ml-auto float-lg-right text-lg-right">
+                            <p><small><b>Transaction Date:</b></small> 10-2-2020</p>
+                                <!-- {{transaction?.transactionDate | date:'dd-MM-yyyy'}}</p> -->
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><small><b>Account Number:</b></small></p>
+                            <!-- <h5>{{transaction?.payeeAccountNumber}}</h5> -->
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <p><small><b>Description:</b></small></p>
+                            <h5>{{transaction?.remarks}}</h5>
+                        </div> -->
+                        <!-- <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transaction Amount:</b></small></p>
+                            <h5>INR {{transaction?.transactionAmount}}</h5>
+                        </div> -->
+                        <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transfed Amount:</b></small></p>
+                            <h5>INR {{transaction?.balanceAmount}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" >
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><small><b>Account Number:</b></small> Jeyakumar  <!-- {{transaction?.payeeName}}--></p>
+
+                        </div>
+                        <div class="col-md-4">
+                            <p><small><b>Currency Type:</b></small>USD  <!-- {{transaction?.transactionType}} --></p>
+
+                        </div>
+                        <div class="col-md-4 ml-auto float-lg-right text-right">
+                            <p><small><b>Transaction Date:</b></small> 10-2-2020
+                                <!-- {{transaction?.transactionDate | date:'dd-MM-yyyy'}}</p> -->
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><small><b>Account Number:</b></small></p>
+                            <!-- <h5>{{transaction?.payeeAccountNumber}}</h5> -->
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <p><small><b>Description:</b></small></p>
+                            <h5>{{transaction?.remarks}}</h5>
+                        </div> -->
+                        <!-- <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transaction Amount:</b></small></p>
+                            <h5>INR {{transaction?.transactionAmount}}</h5>
+                        </div> -->
+                        <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transfed Amount:</b></small></p>
+                            <h5>INR {{transaction?.balanceAmount}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" >
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><small><b>Account Number:</b></small> Jeyakumar  <!-- {{transaction?.payeeName}}--></p>
+
+                        </div>
+                        <div class="col-md-4">
+                            <p><small><b>Currency Type:</b></small>USD  <!-- {{transaction?.transactionType}} --></p>
+
+                        </div>
+                        <div class="col-md-4 ml-auto float-lg-right text-right">
+                            <p><small><b>Transaction Date:</b></small> 10-2-2020
+                                <!-- {{transaction?.transactionDate | date:'dd-MM-yyyy'}}</p> -->
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><small><b>Account Number:</b></small></p>
+                            <!-- <h5>{{transaction?.payeeAccountNumber}}</h5> -->
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <p><small><b>Description:</b></small></p>
+                            <h5>{{transaction?.remarks}}</h5>
+                        </div> -->
+                        <!-- <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transaction Amount:</b></small></p>
+                            <h5>INR {{transaction?.transactionAmount}}</h5>
+                        </div> -->
+                        <div class="col-md-3 ml-auto float-lg-right text-right">
+                            <p><small><b>Transfed Amount:</b></small></p>
+                            <h5>INR {{transaction?.balanceAmount}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>

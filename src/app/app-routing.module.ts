@@ -24,8 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'summary',
-    component: SummaryComponent,
-    canActivate: [AuthGuardService]
+    component: SummaryComponent
   },
 ];
 
