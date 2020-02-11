@@ -16,24 +16,16 @@ export class SummaryComponent implements OnInit {
 
   }
   summaryRespose: TransactionSummary[];
-  accountNumber: number;
-  userName: string;
-  accountType: string;
-  accountId: number;
+  customerId: number;
 
   ngOnInit() {
+    this.customerId = JSON.parse(sessionStorage.getItem('currentUser')).customerId;
     this.getApitransactionSummary();
-    // this.accountNumber = JSON.parse(sessionStorage.getItem('user')).accountNumber;
-    // this.userName = JSON.parse(sessionStorage.getItem('user')).userName;
-    // this.accountType = JSON.parse(sessionStorage.getItem('user')).accountType;
-    // this.accountId = JSON.parse(sessionStorage.getItem('user')).accountId;
-    // this.getBalance();
   }
 
   /* Get Api transaction Summary from api and show in the page  */
   getApitransactionSummary() {
-    const userid = JSON.parse(sessionStorage.getItem('user')).accountId;
-    this.foodService.getSummary(userid).subscribe(
+    this.foodService.getSummary(this.customerId).subscribe(
       (res: TransactionHistory) => {
         if (res.statusCode === 200) {
           this.summaryRespose = res.transactionDetails;
@@ -41,19 +33,6 @@ export class SummaryComponent implements OnInit {
       }
     );
   }
-
-  // /* Get user Account Balance */
-  // getBalance() {
-  //   const endpoint = EndPoints.PAYEELIST + '/' + this.accountId + '/balances';
-  //   this.http.readData(endpoint).subscribe(
-  //     (res: SuccessResponse) => {
-  //       if (res.statusCode === 200) {
-  //         this.accountBalance = res;
-  //       }
-  //     }
-  //   );
-
-  // }
 
 }
 

@@ -59,7 +59,6 @@ describe('LoginComponent', () => {
     })
       .compileComponents();
     api = TestBed.get(FoodCartService);
-    mockRouter = TestBed.get(Router);
   }));
 
   beforeEach(() => {
