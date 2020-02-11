@@ -38,6 +38,8 @@ export class DashboardComponent implements OnInit {
    * @input sapId and password
    */
   transferAmount() {
+    const userData = JSON.parse(sessionStorage.getItem('currentUser'));
+    const userId = userData ? userData.userId : 0;
     if (this.transferForm.valid) {
       const postObj = {
         fromAccount: this.transferForm.value.fromAccount,
@@ -45,7 +47,7 @@ export class DashboardComponent implements OnInit {
         transferAmount: this.transferForm.value.ammount,
       };
       // tslint:disable-next-line: deprecation
-      this.foodService.transferAmount(postObj).subscribe(res => {
+      this.foodService.transferAmount(postObj,userId).subscribe(res => {
         console.log(res);
         Swal.fire(
           'Good job!',
