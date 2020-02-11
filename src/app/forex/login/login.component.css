@@ -56,3 +56,10 @@
           padding: 2px;
           font-size: 100%;
       }
+      input:disabled{
+          cursor:default;
+      }
+
+      .btn-primary.disabled, .btn-primary:disabled{
+        cursor:default !important;
+      }

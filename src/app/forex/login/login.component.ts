@@ -26,6 +26,14 @@ export class LoginComponent implements OnInit {
   */
  get login() { return this.loginForm.controls; }
 
+ /*
+    * @param event
+    * allow numbers only
+    */
+   isNumberKey(event) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
+  }
    /*
    * @param Login Validate
    * Validate login form with credentials
