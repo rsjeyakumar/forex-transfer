@@ -50,13 +50,13 @@ export class FoodCartService {
 
 
   /*
-  * @param data
-  * Validate Login API
-  * POST Method
-  * Type Object
-  */
+   * @param data
+   * Validate Login API
+   * POST Method
+   * Type Object
+   */
   getSummary(data): Observable<any> {
-    return this.http.get(this.transferAPI, this.httpOptions).pipe(
+    return this.http.get(this.transferAPI + '/' + data + '/transactions', this.httpOptions).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }
