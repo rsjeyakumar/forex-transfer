@@ -15,13 +15,11 @@ margin-bottom: 5%;">
                                     <label for="email" class="links">User Name<span
                                             class="required">*</span></label>
                                     <input type="text" formControlName="username" class="form-control"
-                                        placeholder="Enter Email" required>
+                                        placeholder="Enter Username" required>
                                     <div *ngIf="login.username.touched && login.username.invalid" class="error">
                                         <div *ngIf="login.username.errors && login.username.errors.required ">
                                             User name is <strong>required</strong>
                                         </div>
-                                        <div *ngIf="login.email.errors && login.email.errors.email">
-                                            Enter valid email address</div>
                                     </div>
                                 </div>
                                 <div class="form-group text-left">
