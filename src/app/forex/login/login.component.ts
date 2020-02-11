@@ -41,9 +41,9 @@ export class LoginComponent implements OnInit {
         console.log(user);
         if (user) {
           const userDetails = {
-            customerName: user.userName,
-            customerId: user.userId,
-            accountNumber: user.accountNumber
+            customerName: user.userName
+           //  customerId: user.userId,
+            // accountNumber: user.accountNumber
           };
           this.router.navigate(['/dashboard']);
           sessionStorage.setItem('currentUser', JSON.stringify(userDetails));
