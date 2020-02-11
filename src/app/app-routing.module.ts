@@ -6,6 +6,7 @@ import { DashboardComponent } from './forex/dashboard/dashboard.component';
 import { SummaryComponent } from './forex/summary/summary.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
+
 const routes: Routes = [
   {
     path: '',
