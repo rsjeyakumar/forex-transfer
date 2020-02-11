@@ -9,8 +9,8 @@ import { retry, catchError } from 'rxjs/operators';
 export class FoodCartService {
   apiURL = 'http://10.117.189.198:8085';
   showAlert;
-  loginAPI = `${this.apiURL}/homeslice/customers/login`;
-  transferAPI =  `${this.apiURL}/homeslice/customers/login`;
+  loginAPI = `${this.apiURL}/forex/login`;
+  transferAPI =  `${this.apiURL}/forex/users`;
 
 
 constructor(private http: HttpClient) {
@@ -47,6 +47,20 @@ transferAmount(data): Observable < any > {
     catchError(this.errorHandler.bind(this))
   );
 }
+
+
+/*
+* @param data
+* Validate Login API
+* POST Method
+* Type Object
+*/
+getSummary(data): Observable < any > {
+  return this.http.get(this.transferAPI, this.httpOptions).pipe(
+    catchError(this.errorHandler.bind(this))
+  );
+}
+
 
 
   /*

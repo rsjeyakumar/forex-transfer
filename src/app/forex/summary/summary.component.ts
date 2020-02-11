@@ -1,8 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FoodCartService } from '../../services/food-cart.service';
-import Swal from 'sweetalert2';
 import { TransactionSummary, TransactionHistory } from 'src/app/models/models';
 @Component({
   selector: 'app-summary',
@@ -12,23 +9,20 @@ import { TransactionSummary, TransactionHistory } from 'src/app/models/models';
 export class SummaryComponent implements OnInit {
 
   constructor(
-    private elementRef: ElementRef,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    public foodService: FoodCartService
-  ) { }
-  // summaryRespose: Tranaction;
-  // accountNumber: number;
-  // userName: string;
-  // accountType: string;
-  // accountId: number;
-  // accountBalance: SuccessResponse;
-  // constructor(private http: HttpService) { }
+    public foodService: FoodCartService,
+    public render: Renderer2
+  ) {
+    this.render.addClass(document.body, 'gradient');
 
+  }
+  summaryRespose: TransactionSummary[];
+  accountNumber: number;
+  userName: string;
+  accountType: string;
+  accountId: number;
 
   ngOnInit() {
-    this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
-    // this.getApitransactionSummary();
+    this.getApitransactionSummary();
     // this.accountNumber = JSON.parse(sessionStorage.getItem('user')).accountNumber;
     // this.userName = JSON.parse(sessionStorage.getItem('user')).userName;
     // this.accountType = JSON.parse(sessionStorage.getItem('user')).accountType;
@@ -36,18 +30,17 @@ export class SummaryComponent implements OnInit {
     // this.getBalance();
   }
 
-  // /* Get Api transaction Summary from api and show in the page  */
-  // getApitransactionSummary() {
-  //   const userid = JSON.parse(sessionStorage.getItem('user')).accountId;
-  //   const endpoints = `${EndPoints.TRANSACTION}/${EndPoints.MORTGAGEACCOUNTS}/${userid}`;
-  //   this.http.readData(endpoints).subscribe(
-  //     (res: any) => {
-  //       if (res.statusCode === 200) {
-  //         this.summaryRespose = res;
-  //       }
-  //     }
-  //   );
-  // }
+  /* Get Api transaction Summary from api and show in the page  */
+  getApitransactionSummary() {
+    const userid = JSON.parse(sessionStorage.getItem('user')).accountId;
+    this.foodService.getSummary(userid).subscribe(
+      (res: TransactionHistory) => {
+        if (res.statusCode === 200) {
+          this.summaryRespose = res.transactionDetails;
+        }
+      }
+    );
+  }
 
   // /* Get user Account Balance */
   // getBalance() {
