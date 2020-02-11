@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
       const postObj = {
         fromAcc: +this.transferForm.value.fromAccount,
         toAcc: +this.transferForm.value.toAccount,
-        Amount: +this.transferForm.value.ammount,
+        amount: +this.transferForm.value.ammount,
       };
       // tslint:disable-next-line: deprecation
       this.foodService.transferAmount(postObj, userId).subscribe(res => {

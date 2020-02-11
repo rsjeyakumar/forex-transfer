@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   validateLogin() {
     if (this.loginForm.valid) {
       const postObj = {
-        userId: this.loginForm.value.username,
+        userName: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
       // tslint:disable-next-line: deprecation
