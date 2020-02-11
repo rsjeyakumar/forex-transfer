@@ -45,7 +45,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [DashboardComponent],
       imports: [SharedModule, PrimengModule, BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule],
       providers: [
         {
@@ -57,7 +57,7 @@ describe('DashboardComponent', () => {
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe('DashboardComponent', () => {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/login']);
     } else {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
-     }
+    }
     component.transferForm = formBuilder.group({
       fromAccount: ['', Validators.required],
       toAccount: ['', Validators.required],
@@ -84,5 +84,20 @@ describe('DashboardComponent', () => {
     });
     expect(component.transferForm.valid).toBeFalsy();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
+  });
+  it('should transfer the amount', () => {
+    const postObj = {
+      fromAccount: this.transferForm.value.fromAccount,
+      toAccount: this.transferForm.value.toAccount,
+      transferAmount: this.transferForm.value.ammount,
+    };
+    component.transferForm = formBuilder.group({
+      fromAccount: ['', Validators.required],
+      toAccount: ['', Validators.required],
+      ammount: ['', Validators.required]
+    });
+    expect(component.transferForm.valid).toBeFalsy();
+    expect(api.transferAmount(postObj)).toBeTruthy();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/summary']);
   });
 });

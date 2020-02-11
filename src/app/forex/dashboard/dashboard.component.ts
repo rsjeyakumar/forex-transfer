@@ -47,6 +47,12 @@ export class DashboardComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       this.foodService.transferAmount(postObj).subscribe(res => {
         console.log(res);
+        Swal.fire(
+          'Good job!',
+          'Transfer Initiated Successfully',
+          'success'
+        );
+        this.router.navigate(['/summary']);
         this.loader = false;
       }, error => {
         this.loader = false;
@@ -68,6 +74,11 @@ export class DashboardComponent implements OnInit {
     this.createForm();
     // tslint:disable-next-line: max-line-length
     this.elementRef.nativeElement.ownerDocument.body.style.background = 'linear-gradient(to right bottom, #cfcbc9 ,#ff6200,#ff6200,#cfcbc9) fixed center';
-  }
+    if (!this.foodService.validUser()) {
+      this.router.navigate(['/login']);
+    } else {
+        this.router.navigate(['/dashboard']);
+      }
+    }
 
 }
