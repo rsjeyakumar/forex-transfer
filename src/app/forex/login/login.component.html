@@ -12,13 +12,13 @@ margin-bottom: 5%;">
                         <div class="card-body">
                             <form [formGroup]="loginForm" (ngSubmit)="validateLogin();">
                                 <div class="form-group text-left">
-                                    <label for="email" class="links">User Name<span
+                                    <label for="email" class="links">Username<span
                                             class="required">*</span></label>
                                     <input type="text" formControlName="username" class="form-control"
                                         placeholder="Enter Username" required>
                                     <div *ngIf="login.username.touched && login.username.invalid" class="error">
                                         <div *ngIf="login.username.errors && login.username.errors.required ">
-                                            User name is <strong>required</strong>
+                                            Username is <strong>required</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -43,3 +43,6 @@ margin-bottom: 5%;">
         </div>
     </div>
 </section>
+<app-loader [loader]="loader"></app-loader>
+<app-alert [sharedAlert]="foodService.showAlert" *ngIf="foodService.showAlert?.modalShow"></app-alert>
+
