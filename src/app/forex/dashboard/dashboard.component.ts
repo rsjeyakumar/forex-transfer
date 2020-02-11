@@ -32,6 +32,27 @@ export class DashboardComponent implements OnInit {
       const charCode = (event.which) ? event.which : event.keyCode;
       return !(charCode > 31 && (charCode < 48 || charCode > 57));
   }
+   /*
+   * @param Login Validate
+   * Validate login form with credentials
+   * @input sapId and password
+   */
+  transferAmount() {
+    if (this.transferForm.valid) {
+      const postObj = {
+        fromAccount: this.transferForm.value.fromAccount,
+        toAccount: this.transferForm.value.toAccount,
+        transferAmount: this.transferForm.value.ammount,
+      };
+      // tslint:disable-next-line: deprecation
+      this.foodService.transferAmount(postObj).subscribe(res => {
+        console.log(res);
+        this.loader = false;
+      }, error => {
+        this.loader = false;
+      });
+    }
+  }
   /*
      * @param create form
      * Create form group object for login form

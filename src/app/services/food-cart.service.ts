@@ -10,8 +10,7 @@ export class FoodCartService {
   apiURL = 'http://10.117.189.198:8085';
   showAlert;
   loginAPI = `${this.apiURL}/homeslice/customers/login`;
-  viewAllItemsAPI = `${this.apiURL}/homeslice/items`;
-  customersAPI = `${this.apiURL}/homeslice/customers`;
+  transferAPI =  `${this.apiURL}/homeslice/customers/login`;
 
 
 constructor(private http: HttpClient) {
@@ -33,6 +32,18 @@ httpOptions = {
 */
 checkLogin(data): Observable < any > {
   return this.http.post(this.loginAPI, data, this.httpOptions).pipe(
+    catchError(this.errorHandler.bind(this))
+  );
+}
+
+/*
+* @param data
+* Validate Login API
+* POST Method
+* Type Object
+*/
+transferAmount(data): Observable < any > {
+  return this.http.post(this.transferAPI, data, this.httpOptions).pipe(
     catchError(this.errorHandler.bind(this))
   );
 }
