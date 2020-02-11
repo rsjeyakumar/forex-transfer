@@ -11,6 +11,7 @@ export class FoodCartService {
   showAlert;
   loginAPI = `${this.apiURL}/forex/login`;
   transferAPI = `${this.apiURL}/forex/users`;
+  currencyAPI = `${this.apiURL}/forex/rates`;
 
 
   constructor(private http: HttpClient) {
@@ -76,6 +77,11 @@ export class FoodCartService {
   }
 
 
+  getCurrency(data): Observable<any> {
+    return this.http.post(this.currencyAPI, data, this.httpOptions).pipe(
+      catchError(this.errorHandler.bind(this))
+    );
+  }
   /*
      * @param error
      * Error Handling
