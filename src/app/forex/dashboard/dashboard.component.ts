@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   allItemList;
   selectedIndex;
   showBalance = false;
+  currencyList;
+  exchangeRates = false;
   constructor(
     private elementRef: ElementRef,
     private formBuilder: FormBuilder,
@@ -47,16 +49,11 @@ export class DashboardComponent implements OnInit {
       fromAccount: +this.transferForm.value.fromAccount,
       toAccount: +this.transferForm.value.toAccount
     };
-
     // tslint:disable-next-line: deprecation
-    this.foodService.transferAmount(postObj, userId).subscribe(res => {
+    this.foodService.getCurrency(postObj).subscribe(res => {
       console.log(res);
-      Swal.fire(
-        'Good job!',
-        'Transfer Initiated Successfully',
-        'success'
-      );
-      this.router.navigate(['/summary']);
+      this.currencyList = res;
+      this.exchangeRates = true;
       this.loader = false;
     }, error => {
       this.loader = false;

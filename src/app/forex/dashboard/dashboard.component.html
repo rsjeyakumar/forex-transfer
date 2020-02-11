@@ -43,6 +43,16 @@ margin-bottom: 5%;">
                                     <div class="form-group col-md-6 text-left">
                                         <button type="button" class="btn btn-primary" style="margin-top: 30px;" (click)="checkCurrency();">Check Currency</button>
                                     </div>
+                                </div>
+                                <div class="form-row" *ngIf="exchangeRates">
+                                    <div class="form-group col-md-6 text-left">
+                                            <label for="account" class="links">Currency</label>
+                                        <input type="text"class="form-control" [value]="currencyList.toCurrency" disabled>    
+                                    </div>
+                                    <div class="form-group col-md-6 text-left">
+                                        <label for="account" class="links">Exchange Rates</label>
+                                    <input type="text"class="form-control" [value]="currencyList.rate" disabled>    
+                                </div>
                                 </div>  
                                 <!-- <div class="form-group text-left">
                                     <label for="account" class="links">To Account<span
