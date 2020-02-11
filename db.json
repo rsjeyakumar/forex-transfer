@@ -1,0 +1,72 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "mobileNumber": "9876543210",
+      "password": "12345",
+      "customerId": "12345",
+      "customerName": "Rabeek"
+    }
+  ],
+  "items": [
+    {
+      "itemId": 1,
+      "itemName": "Pizza",
+      "price": "500",
+      "favourite": true,
+      "category": "Veg"
+    },
+    {
+      "itemId": 2,
+      "itemName": "Corn Pizza",
+      "price": "500",
+      "favourite": true,
+      "category": "Veg"
+    },
+    {
+      "itemId": 3,
+      "itemName": "Chicken Pizza",
+      "price": "1000",
+      "favourite": false,
+      "category": "Non-Veg"
+    },
+    {
+      "itemId": 4,
+      "itemName": "Burger",
+      "price": "150",
+      "favourite": false,
+      "category": "Veg"
+    },
+    {
+      "itemId": 5,
+      "itemName": "Chicken Burger",
+      "price": "250",
+      "favourite": true,
+      "category": "Non-Veg"
+    },
+    {
+      "itemId": 6,
+      "itemName": "Panner Burger",
+      "price": "350",
+      "favourite": false,
+      "category": "Veg"
+    },
+    {
+      "itemId": 7,
+      "itemName": "Musroom Burger",
+      "price": "250",
+      "favourite": true,
+      "category": "Veg"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
