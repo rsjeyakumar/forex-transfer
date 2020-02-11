@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   validateLogin() {
     if (this.loginForm.valid) {
       const postObj = {
-        userName: this.loginForm.value.username,
+        userId: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
       // tslint:disable-next-line: deprecation
@@ -69,6 +69,11 @@ export class LoginComponent implements OnInit {
     this.createForm();
       // tslint:disable-next-line: max-line-length
     this.elementRef.nativeElement.ownerDocument.body.style.background = 'url(\'https://mobirise.com/extensions/strategyamp/assets/images/mbr-1.jpg\') no-repeat center center fixed';
+    if (!this.foodService.validUser()) {
+      this.router.navigate(['/login']);
+    } else {
+        this.router.navigate(['/dashboard']);
+      }
   }
 
 }

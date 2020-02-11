@@ -76,7 +76,7 @@ describe('LoginComponent', () => {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/login']);
     } else {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/dashboard']);
-     }
+    }
     component.loginForm = formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
@@ -90,8 +90,8 @@ describe('LoginComponent', () => {
       customerId: 1234
     };
     const postObj = {
-      userName:  component.loginForm.controls.username.setValue('rabeek'),
-      password:  component.loginForm.controls.password.setValue('12345')
+      userName: component.loginForm.controls.username.setValue('rabeek'),
+      password: component.loginForm.controls.password.setValue('12345')
     };
     component.validateLogin();
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
