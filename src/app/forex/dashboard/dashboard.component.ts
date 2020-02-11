@@ -24,6 +24,14 @@ export class DashboardComponent implements OnInit {
  */
   get transfer() { return this.transferForm.controls; }
 
+   /*
+     * @param event
+     * allow numbers only
+     */
+    isNumberKey(event) {
+      const charCode = (event.which) ? event.which : event.keyCode;
+      return !(charCode > 31 && (charCode < 48 || charCode > 57));
+  }
   /*
      * @param create form
      * Create form group object for login form
@@ -32,8 +40,6 @@ export class DashboardComponent implements OnInit {
     this.transferForm = this.formBuilder.group({
       fromAccount: ['', Validators.required],
       toAccount: ['', Validators.required],
-      fromCurrency: ['', Validators.required],
-      toCurrency: ['', Validators.required],
       ammount: ['', Validators.required]
     });
   }
