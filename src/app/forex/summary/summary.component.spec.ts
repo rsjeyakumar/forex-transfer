@@ -18,7 +18,7 @@ describe('SummaryComponent', () => {
     navigate: jasmine.createSpy('navigate')
   };
   const mockUserService = {
-    getApitransactionSummary(data: object) {
+    getSummary(customerId: number) {
       return of({
         statusCode: 200,
         transactionDetails: [{
@@ -47,7 +47,7 @@ describe('SummaryComponent', () => {
     })
       .compileComponents();
     api = TestBed.get(FoodCartService);
-
+    mockRouter = TestBed.get(Router);
   }));
 
   beforeEach(() => {

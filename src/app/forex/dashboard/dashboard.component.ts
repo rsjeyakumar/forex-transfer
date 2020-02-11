@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     * allow numbers only
     */
   isNumberKey(event) {
-    const charCode = (event.which) ? event.which : event.keyCode;
+    const charCode =  event.keyCode;
     return !(charCode > 31 && (charCode < 48 || charCode > 57));
   }
 

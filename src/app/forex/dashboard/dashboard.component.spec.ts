@@ -147,4 +147,11 @@ describe('DashboardComponent', () => {
     component.selectedIndex = 0;
     expect(component.selectedIndex).toBe(0);
   });
+  it('should restrict alpha numerics', () => {
+    const keyEvent = new KeyboardEvent('keydown', { code: 'KeyA' });
+    const spy = spyOn(keyEvent, 'preventDefault');
+    component.isNumberKey(keyEvent);
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  });
 });
