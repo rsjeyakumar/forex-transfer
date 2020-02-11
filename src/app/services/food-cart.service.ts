@@ -7,7 +7,7 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoodCartService {
-  apiURL = 'http://10.117.189.227:8585';
+  apiURL = 'http://52.172.35.240:9090';
   showAlert;
   loginAPI = `${this.apiURL}/forex/login`;
   transferAPI = `${this.apiURL}/forex/users`;
