@@ -10,7 +10,7 @@ import { of } from 'rxjs';
 
 import { SummaryComponent } from './summary.component';
 
-fdescribe('SummaryComponent', () => {
+describe('SummaryComponent', () => {
   let component: SummaryComponent;
   let fixture: ComponentFixture<SummaryComponent>;
   let api: FoodCartService;
